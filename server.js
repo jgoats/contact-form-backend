@@ -30,9 +30,9 @@ app.post("/send", (req, res) => {
         if (error) {
             res.send(error);
         } else {
-            var string = encodeURIComponent('200');
-            //res.json({ status: "Email sent" });
-            return res.redirect("localhost:3000?response=" + string);
+            // var string = encodeURIComponent('200');
+            res.json({ status: "Email sent" });
+
         }
     });
 });
