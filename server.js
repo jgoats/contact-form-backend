@@ -7,7 +7,7 @@ require("dotenv").config();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 2999;
 
 app.post("/sent", (req, res) => {
     var transporter = nodemailer.createTransport({
