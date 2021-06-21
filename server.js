@@ -30,7 +30,7 @@ app.post("/send", (req, res) => {
         if (error) {
             res.send(error);
         } else {
-            return window.redirect(200, "localhost:3000");
+            return window.redirect("localhost:3000?status=200");
         }
     });
 });
