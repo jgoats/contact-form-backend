@@ -3,13 +3,12 @@ let app = express();
 let nodemailer = require("nodemailer");
 
 require("dotenv").config();
+let PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-let PORT = process.env.PORT || 2999;
-
-app.post("/sent", (req, res) => {
+app.post("/send", (req, res) => {
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -35,6 +34,6 @@ app.post("/sent", (req, res) => {
     });
 });
 
-app.listen(POST, () => {
+app.listen(PORT, () => {
     console.log(`running on port ${PORT}`)
 });
