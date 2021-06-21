@@ -27,7 +27,7 @@ app.post("/send", (req, res) => {
             res.send(error);
         } else {
             console.log('Email sent: ' + info.response);
-            res.redirect([console.log(200)], "localhost:3000");
+            res.redirect([200], "localhost:3000");
         }
     });
 });
