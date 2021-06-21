@@ -18,7 +18,7 @@ app.post("/send", (req, res) => {
     var mailOptions = {
         from: req.body.email,
         to: process.env.USERNAME,
-        subject: `message from ${req.body.email}`,
+        subject: `message from ${req.body.firstname} ${req.body.lastname} from ${req.body.email}`,
         text: req.body.message
     };
 
