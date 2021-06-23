@@ -1,12 +1,15 @@
 let express = require("express");
 let app = express();
 let nodemailer = require("nodemailer");
+var cors = require('cors');
 let PORT = process.env.PORT;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.post("/send", (req, res) => {
+app.use(cors());
+
+app.post("/send", cors(), (req, res) => {
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
