@@ -1,7 +1,6 @@
 let express = require("express");
 let app = express();
 let nodemailer = require("nodemailer");
-require("dotenv").config();
 let PORT = process.env.PORT;
 
 app.use(express.urlencoded({ extended: false }));
