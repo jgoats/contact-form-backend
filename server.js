@@ -30,7 +30,7 @@ app.post("/send", (req, res) => {
         if (error) {
             res.send(error);
         } else {
-            return res.redirect("localhost:3000");
+            res.send(info);
         }
     });
 });
