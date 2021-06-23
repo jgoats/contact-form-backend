@@ -30,7 +30,7 @@ app.post("/send", (req, res) => {
         if (error) {
             res.send(error);
         } else {
-            res.send(info);
+            res.json()
         }
     });
 });
