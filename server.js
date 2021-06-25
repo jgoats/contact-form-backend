@@ -13,6 +13,10 @@ app.use(cors());
 app.post("/send", [
     check(body("email").isEmail)
 ], cors(), (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ validEmail: false });
+    }
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -33,16 +37,10 @@ app.post("/send", [
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
-        const errors = validationResult(req);
-        if (error || !errors.isEmpty()) {
-            if (error) {
-                res.send(error);
-            }
-            else if (!errors.isEmpty()) {
-                res.json({ "emailValid": false });
-            }
-
-        } else {
+        if (error) {
+            res.send(error);
+        }
+        else {
             res.json({
                 "emailSent": true,
                 "emailValid": true
