@@ -43,7 +43,10 @@ app.post("/send", [
             }
 
         } else {
-            res.json({ "emailSent": true })
+            res.json({
+                "emailSent": true,
+                "emailValid": true
+            })
         }
     });
 });
