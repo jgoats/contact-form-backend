@@ -10,9 +10,7 @@ app.use(express.json());
 
 app.use(cors());
 
-app.post("/send", [
-    check(body("email").isEmail)
-], cors(), (req, res) => {
+app.post("/send", check(body("email").isEmail()), cors(), (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ validEmail: false });
