@@ -2,6 +2,7 @@ let express = require("express");
 let app = express();
 let nodemailer = require("nodemailer");
 var cors = require('cors');
+const { check, validationResult } = require('express-validator');
 let PORT = process.env.PORT;
 
 app.use(express.urlencoded({ extended: false }));
@@ -9,7 +10,9 @@ app.use(express.json());
 
 app.use(cors());
 
-app.post("/send", cors(), (req, res) => {
+app.post("/send", [
+    check(body("email").isEmail)
+], cors(), (req, res) => {
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -30,8 +33,15 @@ app.post("/send", cors(), (req, res) => {
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            res.send(error);
+        const errors = validationResult(req);
+        if (error || !errors.isEmpty()) {
+            if (error) {
+                res.send(error);
+            }
+            else if (!errors.isEmpty()) {
+                res.json({ "emailValid": false });
+            }
+
         } else {
             res.json({ "emailSent": true })
         }
