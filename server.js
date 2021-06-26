@@ -2,7 +2,7 @@ let express = require("express");
 let app = express();
 let nodemailer = require("nodemailer");
 var cors = require('cors');
-let PORT = process.env.PORT || 500;
+let PORT = process.env.PORT || 499;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
