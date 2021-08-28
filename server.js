@@ -29,7 +29,8 @@ app.post("/send", cors(), (req, res) => {
             clientId: process.env.OAUTH_CLIENTID,
             clientSecret: process.env.OAUTH_CLIENT_SECRET,
             refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-            accessToken: myAccessToken
+            accessToken: myAccessToken,
+            expires: 121212121321231
         }
     });
 
